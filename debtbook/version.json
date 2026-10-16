@@ -1,12 +1,13 @@
 {
   "app": "debtbook",
-  "version": "1.0.0",
-  "build": 3,
+  "version": "1.0.1",
+  "build": 4,
   "date": "2026-10-16",
   "min_android": "6.0",
-  "apk": "https://github.com/yasserninal120/yasserninal120.github.io/releases/latest/download/debtbook.apk",
+  "apk": "https://github.com/yasserninal120/yasserninal120.github.io/releases/latest/download/Fawater-wa-Duyoon.apk",
   "sha256": "99:FD:12:D1:19:F1:57:44:D3:0E:68:CD:15:C0:19:59:0B:37:75:34:C1:2A:57:74:16:53:BF:37:DF:15:0E:D9",
   "notes": [
-    "أول نسخة على الموقع"
+    "أيقونة جديدة للتطبيق",
+    "تحسينات صغيرة"
   ]
 }
