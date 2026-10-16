@@ -23,7 +23,7 @@
   <p class="section-sub">التطبيق بينزل كملف APK من موقعنا، مو من متجر Play. التثبيت بياخد دقيقة، ومنعمله مرة وحدة بس.</p>
 
   <div class="steps">
-    <div class="step"><div><h3>نزّل الملف</h3><p>من صفحة <a href="../index.html" style="color:var(--primary)">فواتير وديون</a> اضغط "تحميل للأندرويد". الملف اسمه <span class="mono">Fawater-wa-Duyoon.apk</span>. افتحه من الإشعار أو من مجلد التنزيلات.</p></div></div>
+    <div class="step"><div><h3>نزّل الملف</h3><p>من صفحة <a href="../index.html" style="color:var(--primary)">فواتير وديون</a> اضغط "تحميل للأندرويد" واستنى الشريط يكمّل: الصفحة بتنزّل الملف وبتتأكد إنه سليم قبل ما تحفظه. الملف اسمه <span class="mono" id="fname">فواتير-وديون-1.0.3.apk</span> (الرقم هو رقم النسخة). افتحه من الإشعار أو من مجلد التنزيلات.</p></div></div>
     <div class="step"><div><h3>اسمح بالتثبيت من هالمصدر</h3><p>أول مرة، أندرويد بيقلّك إنه ما بيسمح بتثبيت تطبيقات من هالمصدر. اضغط <b>الإعدادات</b>، وفعّل <b>السماح من هذا المصدر</b> (Allow from this source)، وارجع.</p></div></div>
     <div class="step"><div><h3>ثبّت</h3><p>اضغط <b>تثبيت</b>. إذا طلعلك تحذير من Play Protect إنه التطبيق مو معروف، اضغط <b>مزيد من التفاصيل</b> وبعدين <b>التثبيت على أي حال</b>. هاد بيطلع لأي تطبيق من برّا المتجر.</p></div></div>
     <div class="step"><div><h3>افتح وجرّب</h3><p>التطبيق بيطلع على الشاشة باسم <b>«فواتير وديون»</b>. عندك 3 أيام تجربة بكل الميزات. لما يعجبك، اطلب التفعيل من شاشة "حسابي" جوّا التطبيق.</p></div></div>
@@ -43,6 +43,7 @@
   <div class="grid">
     <div class="card"><h3 style="margin-top:0">"التطبيق غير مثبّت"</h3><p>غالباً عندك نسخة مو من موقعنا. خود نسخة احتياطية من التطبيق، وابعتلنا على واتساب قبل ما تحذف شي، ومنحلّها مع بعض.</p></div>
     <div class="card"><h3 style="margin-top:0">ما لقيت خيار "السماح من هذا المصدر"</h3><p>بعض الموبايلات بتسميه "تثبيت تطبيقات غير معروفة" بالإعدادات ← التطبيقات ← المتصفح (أو مدير الملفات).</p></div>
+    <div class="card"><h3 style="margin-top:0">«الحزمة غير صالحة / package appears to be invalid»</h3><p>الملف ما نزل كامل. احذفه ونزّل من جديد من الصفحة.</p></div>
     <div class="card"><h3 style="margin-top:0">وقف التحميل بالنص؟</h3><p>افتح التنزيلات واضغط استئناف، بيكمّل من وين وقف.</p></div>
     <div class="card"><h3 style="margin-top:0">لسا في مشكلة؟</h3><p>ابعتلنا صورة على <a href="https://wa.me/963956030136" target="_blank" rel="noopener" style="color:var(--primary)">واتساب</a> ومنحلها مع بعض.</p></div>
   </div>
@@ -52,6 +53,7 @@
 <script>
 fetch('../version.json', {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(v => {
   document.getElementById('fp').textContent = (v && v.sha256) ? 'SHA-256: ' + v.sha256 : 'بتطلع هون بعد أول نسخة';
+  if (v && v.version) document.getElementById('fname').textContent = 'فواتير-وديون-' + v.version + '.apk';
 }).catch(() => {});
 </script>
 </body>
