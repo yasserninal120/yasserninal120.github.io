@@ -5,7 +5,8 @@
 // and a cancel button → on a cut, resume with Range from the last byte
 // received (up to 5 retries, growing wait) → check size + SHA-256
 // (crypto.subtle) → wrong: download once more from zero → right: save the
-// Blob as "فواتير-وديون-<version>.apk". No fetch / crypto.subtle / streams,
+// Blob as "<data-file><version>.apk" (default "فواتير-وديون-"; each app
+// page sets its own prefix on the #dl button). No fetch / crypto.subtle / streams,
 // or everything failed: a plain direct link. Without JavaScript the button
 // is a plain link to the file.
 (function () {
@@ -15,6 +16,7 @@
   if (!btn || !box) return;
 
   var VERSION_URL = btn.getAttribute('data-version') || 'version.json';
+  var FILE_PREFIX = btn.getAttribute('data-file') || 'فواتير-وديون-';
   var MAX_RETRIES = 5;
   var supported = !!(window.fetch && window.crypto && window.crypto.subtle &&
     window.ReadableStream && window.Blob && window.URL && window.AbortController &&
@@ -146,7 +148,7 @@
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
-    a.download = 'فواتير-وديون-' + version + '.apk';
+    a.download = FILE_PREFIX + version + '.apk';
     document.body.appendChild(a);
     a.click();
     a.remove();
