@@ -53,8 +53,10 @@
     <li><b>إبقاء الجهاز صاحي</b> (WAKE_LOCK): لخدمة التذكير بالخلفية.</li>
     <li><b>استثناء من توفير البطارية</b> (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): بيطلبه أول مرة لحتى ما يوقّف النظام التذكيرات.</li>
     <li><b>تثبيت التحديثات</b> (REQUEST_INSTALL_PACKAGES): لفتح المثبّت للتحديث يلي نزل من جوّا التطبيق وتأكّد إنه سليم.</li>
+    <li><b>حالة الشبكة</b> (ACCESS_NETWORK_STATE): بتستعمله مكتبة تشغيل التلاوة لتعرف نوع الاتصال وقت التشغيل.</li>
+    <li><b>الاهتزاز</b> (VIBRATE): بتطلبه مكتبة الإشعارات، وتذكيرات التطبيق صامتة وبلا اهتزاز.</li>
   </ul>
-  <p>إبقاء الشاشة مضيئة وقت القراية والاستماع ما بيحتاج إذن. ومعلنة بملف التطبيق بس ما بتنستعمل حالياً: الاهتزاز (VIBRATE)، والإشعار بملء الشاشة (USE_FULL_SCREEN_INTENT)، والظهور فوق التطبيقات (SYSTEM_ALERT_WINDOW)، وحالة الشبكة (ACCESS_NETWORK_STATE).</p>
+  <p>إبقاء الشاشة مضيئة وقت القراية والاستماع ما بيحتاج إذن.</p>
   <h2>إعلانات وتتبّع</h2>
   <p>ما في إعلانات، ولا تتبّع، ولا إحصائيات.</p>
   <h2>حقوقك</h2>
@@ -99,8 +101,10 @@
     <li><b>Keep the device awake</b> (WAKE_LOCK): for the background reminder service.</li>
     <li><b>Battery optimisation exemption</b> (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): asked once so the system does not stop the reminders.</li>
     <li><b>Install updates</b> (REQUEST_INSTALL_PACKAGES): to open the installer for an update downloaded and verified inside the app.</li>
+    <li><b>Network state</b> (ACCESS_NETWORK_STATE): used by the recitation player library to know the connection type during playback.</li>
+    <li><b>Vibration</b> (VIBRATE): requested by the notifications library; the app's reminders are silent, with no vibration.</li>
   </ul>
-  <p>Keeping the screen on while reading and listening needs no permission. Declared in the app but not used at the moment: vibration (VIBRATE), full-screen notifications (USE_FULL_SCREEN_INTENT), drawing over other apps (SYSTEM_ALERT_WINDOW), and network state (ACCESS_NETWORK_STATE).</p>
+  <p>Keeping the screen on while reading and listening needs no permission.</p>
   <h2>Ads and tracking</h2>
   <p>No ads, no tracking, no analytics.</p>
   <h2>Your rights</h2>
