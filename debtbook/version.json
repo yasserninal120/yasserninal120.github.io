@@ -1,17 +1,16 @@
 {
   "app": "debtbook",
-  "version": "1.0.4",
-  "build": 7,
-  "date": "2026-10-19",
+  "version": "1.0.5",
+  "build": 8,
+  "date": "2026-10-23",
   "min_android": "6.0",
-  "apk": "https://yasserninal120.github.io/debtbook/download/Fawater-wa-Duyoon-1.0.4.apk",
+  "apk": "https://yasserninal120.github.io/debtbook/download/Fawater-wa-Duyoon-1.0.5.apk",
   "sha256": "99:FD:12:D1:19:F1:57:44:D3:0E:68:CD:15:C0:19:59:0B:37:75:34:C1:2A:57:74:16:53:BF:37:DF:15:0E:D9",
   "notes": [
-    "تصليح الكيبورد بالتابلت: الحقول صارت تبيّن كلها",
-    "ميزة جديدة: صندوق المصاريف لشغل الخدمات، بتشغّلها من الإعدادات",
-    "الأرقام مع الليرة التركية والدولار صارت تطلع مرتبة",
-    "تحسين نص عدّ الصندوق اليومي"
+    "اشتراك شهري جديد",
+    "تحديث شروط الاستخدام: المبالغ المدفوعة غير قابلة للاسترداد",
+    "إمكانية التحديث الإجباري للإصدارات المهمة"
   ],
-  "file_sha256": "bcbd5960e6d3e3cbafcac8486beb22e473624fa6505bcbbf3ffe81728865aef4",
-  "size": 44980792
+  "file_sha256": "5ef2eadadd3f958ca5eb756856dd09cb6364fe201863d0ba7c7dde3ed9cb8d66",
+  "size": 45013636
 }
