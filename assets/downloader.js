@@ -1,19 +1,28 @@
-// فواتير وديون: smart APK download for the app page (#dl button).
-// Mobile Chrome's own downloader can save the APK with a block of zeros in
-// the middle (parallel parts + a flaky line) → "package appears to be
-// invalid". Here: version.json → ONE sequential fetch with a progress bar
+// نينال سوفت: APK download for an app page and its install/ page.
+//
+// #dl, the main button, is a PLAIN direct link to the file (with a download
+// name) and nothing here intercepts it: the browser's download manager takes
+// it, and the person can close the page. This script only fills it (and the
+// size, #dlmb) from version.json so it always points at the latest version;
+// without JavaScript the href written in the HTML is used as is.
+//
+// #dlsafe (and any [data-safe]) is the SECONDARY "safe download", for when
+// mobile Chrome's downloader saved the APK with a block of zeros in the
+// middle → "package appears to be invalid". It warns first that the page has
+// to stay open, then: version.json → ONE sequential fetch with a progress bar
 // and a cancel button → on a cut, resume with Range from the last byte
 // received (up to 5 retries, growing wait) → check size + SHA-256
 // (crypto.subtle) → wrong: download once more from zero → right: save the
-// Blob as "<data-file><version>.apk" (default "فواتير-وديون-"; each app
-// page sets its own prefix on the #dl button). No fetch / crypto.subtle / streams,
-// or everything failed: a plain direct link. Without JavaScript the button
-// is a plain link to the file.
+// Blob as "<data-file><version>.apk" (default "فواتير-وديون-"). A failure
+// offers "try again"; it never switches to the direct link on its own.
+//
+// Attributes on #dl: data-version (version.json URL, default "version.json"),
+// data-file (Arabic file-name prefix).
 (function () {
   'use strict';
   var btn = document.getElementById('dl');
   var box = document.getElementById('dlbox');
-  if (!btn || !box) return;
+  if (!btn) return;
 
   var VERSION_URL = btn.getAttribute('data-version') || 'version.json';
   var FILE_PREFIX = btn.getAttribute('data-file') || 'فواتير-وديون-';
@@ -21,7 +30,7 @@
   var supported = !!(window.fetch && window.crypto && window.crypto.subtle &&
     window.ReadableStream && window.Blob && window.URL && window.AbortController &&
     'download' in document.createElement('a'));
-  var running = null; // AbortController of the current download
+  var running = null; // AbortController of the current safe download
 
   function mb(n) { return (n / 1e6).toFixed(1); }
   function el(tag, cls, text) {
@@ -29,6 +38,13 @@
     if (cls) e.className = cls;
     if (text != null) e.textContent = text;
     return e;
+  }
+  function button(cls, id, text, onClick) {
+    var b = el('button', cls, text);
+    b.type = 'button';
+    b.id = id;
+    b.addEventListener('click', onClick);
+    return b;
   }
   function sleep(ms, signal) {
     return new Promise(function (res, rej) {
@@ -43,50 +59,68 @@
     }).join('');
   }
 
-  // ---- UI states (all inside #dlbox) ----
-  function show(nodes) {
+  // ---- the direct button: latest href + download name + size ----
+  function fillDirect(info) {
+    if (!info) return;
+    if (info.apk) btn.href = info.apk;
+    if (info.version) btn.setAttribute('download', FILE_PREFIX + info.version + '.apk');
+    var size = document.getElementById('dlmb');
+    if (size && info.size > 0) size.textContent = mb(info.size);
+  }
+  fetch(VERSION_URL, { cache: 'no-store' }).then(function (r) {
+    return r.ok ? r.json() : null;
+  }).then(fillDirect).catch(function () {});
+
+  if (!box) return;
+
+  // ---- safe download UI (all inside #dlbox) ----
+  function show(nodes, state) {
     box.hidden = false;
     box.textContent = '';
     nodes.forEach(function (n) { box.appendChild(n); });
+    box.setAttribute('data-state', state);
   }
+  function hide() { box.hidden = true; box.textContent = ''; box.removeAttribute('data-state'); }
   var bar, label;
+  function resetProgress() { bar = null; label = null; }
   function showProgress(got, total) {
     if (!bar) {
       var track = el('div', 'dl-track');
       bar = el('div', 'dl-fill');
       track.appendChild(bar);
       label = el('p', 'dl-label');
-      var cancel = el('button', 'dl-cancel', 'إلغاء');
-      cancel.type = 'button';
-      cancel.id = 'dlcancel';
-      cancel.addEventListener('click', function () { if (running) running.abort(); });
-      show([label, track, cancel]);
+      show([label, track, el('p', 'dl-warn', 'خلّي الصفحة مفتوحة لحتى يخلص.'),
+        button('dl-cancel', 'dlcancel', 'إلغاء', function () { if (running) running.abort(); })], 'downloading');
     }
     var pct = total ? Math.min(100, Math.floor(got * 100 / total)) : 0;
     bar.style.width = pct + '%';
-    label.textContent = 'عم ننزّل… ' + mb(got) + ' / ' + mb(total) + ' MB · ' + pct + '%';
-    box.setAttribute('data-state', 'downloading');
+    label.textContent = 'عم ننزّل… ' + mb(got) + ' / ' + mb(total) + ' م.ب · ' + pct + '%';
   }
-  function resetProgress() { bar = null; label = null; }
+  function showConfirm() {
+    if (running) return;
+    resetProgress();
+    if (!supported) {
+      show([el('p', 'dl-label', 'متصفحك ما بيدعم الطريقة الآمنة. جرّب من Chrome، أو ابعتلنا على واتساب.'),
+        button('dl-cancel', 'dlback', 'تمام', hide)], 'unsupported');
+      return;
+    }
+    show([el('p', 'dl-label', 'هالطريقة بتتأكد إنه الملف سليم، بس لازم تضل الصفحة مفتوحة لحتى يخلص.'),
+      button('dl-start', 'dlstart', 'ابدأ التنزيل الآمن', start),
+      button('dl-cancel', 'dlback', 'إلغاء', hide)], 'confirm');
+  }
   function showDone() {
     resetProgress();
-    show([el('p', 'dl-ok', '✓ تم التنزيل. افتح الملف من الإشعار أو من التنزيلات وثبّته')]);
-    box.setAttribute('data-state', 'done');
+    show([el('p', 'dl-ok', '✓ تم التنزيل والتأكد إنه سليم. افتح الملف من الإشعار أو من التنزيلات وثبّته')], 'done');
   }
   function showCancelled() {
     resetProgress();
-    show([el('p', 'dl-label', 'انلغى التنزيل.')]);
-    box.setAttribute('data-state', 'cancelled');
+    show([el('p', 'dl-label', 'انلغى التنزيل.'),
+      button('dl-cancel', 'dlretry', 'جرّب مرة تانية', start)], 'cancelled');
   }
-  function showFallback(url, why) {
+  function showFailed(why) {
     resetProgress();
-    var p = el('p', 'dl-label', why ? why + ' ' : '');
-    var a = el('a', 'dl-direct', 'تنزيل مباشر للملف');
-    a.href = url;
-    a.id = 'dldirect';
-    p.appendChild(a);
-    show([p, el('p', 'dl-warn', 'إذا طلعلك «الحزمة غير صالحة»، احذف الملف ونزّل من جديد.')]);
-    box.setAttribute('data-state', 'fallback');
+    show([el('p', 'dl-label', why + ' تأكد من النت وجرّب مرة تانية.'),
+      button('dl-start', 'dlretry', 'جرّب مرة تانية', start)], 'failed');
   }
 
   // ---- download: one sequential request, Range resume ----
@@ -156,43 +190,45 @@
   }
 
   function start() {
-    if (running) return;
+    if (running || !supported) return;
     var ctl = running = new AbortController();
-    var direct = btn.href;
     resetProgress();
-    show([el('p', 'dl-label', 'عم نجهّز التنزيل…')]);
+    show([el('p', 'dl-label', 'عم نجهّز التنزيل…')], 'preparing');
     fetch(VERSION_URL, { cache: 'no-store', signal: ctl.signal }).then(function (r) {
       if (!r.ok) throw new Error('version.json ' + r.status);
       return r.json();
     }).then(function (info) {
       if (!info || !info.apk || !info.file_sha256 || !(info.size > 0)) {
-        showFallback(info && info.apk || direct);
+        showFailed('ما قدرنا نجيب معلومات النسخة.');
         return;
       }
-      direct = info.apk;
+      fillDirect(info);
       var round = 0;
       function attempt() {
         return fetchAll(info.apk, info.size, ctl.signal).then(function (blob) {
           return verify(blob, info).then(function (ok) {
             if (ok) { save(blob, info.version); showDone(); return; }
             if (round++ < 1) { resetProgress(); return attempt(); } // once more from zero
-            showFallback(info.apk, 'التنزيل ما كمل صح.');
+            showFailed('الملف ما نزل سليم.');
           });
         });
       }
       return attempt();
     }).catch(function (e) {
       if (e && e.name === 'AbortError') showCancelled();
-      else showFallback(direct, 'ما قدرنا نكمّل التنزيل.');
+      else showFailed('ما قدرنا نكمّل التنزيل.');
     }).then(function () { running = null; });
   }
 
-  btn.addEventListener('click', function (e) {
-    if (!supported) { showFallback(btn.href); return; } // the plain link does it
-    e.preventDefault();
-    start();
+  var triggers = document.querySelectorAll('#dlsafe, [data-safe]');
+  Array.prototype.forEach.call(triggers, function (t) {
+    t.addEventListener('click', function (e) {
+      e.preventDefault();
+      showConfirm();
+      if (box.scrollIntoView) box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
   });
 
   // Tests: the state machine without a click.
-  window.__debtbookDownloader = { start: start, supported: supported };
+  window.__ninalDownloader = { start: start, confirm: showConfirm, supported: supported };
 })();

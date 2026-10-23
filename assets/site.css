@@ -115,3 +115,26 @@ footer a:hover{color:var(--primary)}
 .fp[hidden]{display:none}
 @media (max-width:560px){.app-card .go{display:none}.app-card{align-items:flex-start}}
 .logo{width:38px;height:38px;flex:none;display:block}
+/* APK download (assets/downloader.js): the direct button, the note under it, the safe-download link and its box.
+   On the hero (dark) by default; .dl-light for a light background (install/ pages). */
+.dl-note{margin:12px 0 0;max-width:460px;font-size:13px;line-height:1.6;color:#A9CEC4}
+.dl-safe{display:inline-block;margin-top:6px;font-size:13px;color:var(--gold-light);text-decoration:underline}
+.dl-box{margin-top:16px;max-width:460px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.dl-box[hidden]{display:none}
+.dl-box p{margin:0 0 8px}
+.dl-label{font-size:15px}
+.dl-track{height:10px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden}
+.dl-fill{height:100%;width:0;background:var(--gold-light);transition:width .2s ease}
+.dl-start,.dl-cancel{margin-top:8px;margin-inline-end:8px;height:40px;padding:0 20px;border-radius:20px;font:600 14px 'Readex Pro',sans-serif;cursor:pointer}
+.dl-start{border:0;background:var(--gold);color:#2A1C04}
+.dl-cancel{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff}
+.dl-ok{font-weight:600;color:var(--gold-light)}
+.dl-warn{font-size:14px;opacity:.85}
+.dl-light{margin:22px 0 8px;padding:20px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.dl-light .dl-note{color:var(--muted)}
+.dl-light .dl-safe{color:var(--primary)}
+.dl-light .dl-box{background:var(--bg);border-color:var(--line);color:var(--ink)}
+.dl-light .dl-track{background:var(--field)}
+.dl-light .dl-fill{background:var(--primary)}
+.dl-light .dl-cancel{border-color:var(--field);color:var(--ink)}
+.dl-light .dl-ok{color:var(--credit)}

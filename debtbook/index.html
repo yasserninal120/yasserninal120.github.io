@@ -14,18 +14,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/site.css">
-<style>
-.dl-size{font-weight:500;font-size:14px;opacity:.75;direction:ltr;unicode-bidi:isolate}
-.dl-box{margin-top:16px;max-width:460px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
-.dl-box p{margin:0 0 8px}
-.dl-label{font-size:15px}
-.dl-track{height:10px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden}
-.dl-fill{height:100%;width:0;background:var(--gold-light);transition:width .2s ease}
-.dl-cancel{margin-top:12px;height:40px;padding:0 20px;border-radius:20px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font:600 14px 'Readex Pro',sans-serif;cursor:pointer}
-.dl-ok{font-weight:600;color:var(--gold-light)}
-.dl-direct{color:var(--gold-light);font-weight:600;text-decoration:underline}
-.dl-warn{font-size:14px;opacity:.85}
-</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -39,12 +27,14 @@
     <h1>فواتير وديون</h1>
     <p class="lead">بدّل دفتر الورق بتطبيق بيحسبلك كلشي: ديون الزبائن والموزعين بالدولار والليرة السورية والتركية، والفواتير والكشوفات PDF جاهزة للإرسال على واتساب.</p>
     <div class="actions">
-      <a class="btn btn-gold" id="dl" href="https://yasserninal120.github.io/debtbook/download/Fawater-wa-Duyoon-1.0.4.apk">
+      <a class="btn btn-gold" id="dl" data-file="فواتير-وديون-" href="https://yasserninal120.github.io/debtbook/download/Fawater-wa-Duyoon-1.0.4.apk" download="فواتير-وديون-1.0.4.apk">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
-        تحميل للأندرويد <span class="dl-size" id="dlsize">45.0 MB</span>
+        تنزيل التطبيق
       </a>
       <a class="btn btn-ghost" href="install/index.html">كيف بثبّته؟</a>
     </div>
+    <p class="dl-note">التنزيل بيكمّل لحاله، فيك تسكّر الصفحة. بتلاقي الملف بالإشعارات أو بمجلد التنزيلات. الحجم: <span id="dlmb">45.0</span> م.ب</p>
+    <a class="dl-safe" id="dlsafe" href="install/index.html#problems">طلعتلك رسالة "الحزمة غير صالحة"؟ نزّل بالطريقة الآمنة</a>
     <div class="dl-box" id="dlbox" hidden aria-live="polite"></div>
     <p class="meta" id="ver">تجربة مجانية 3 أيام · أندرويد 6 وأحدث</p>
   </div>
@@ -109,13 +99,11 @@
 <footer><div class="wrap"><span>© 2026 نينال سوفت · Ninal Soft</span><span><a href="privacy/index.html">سياسة الخصوصية</a> · <a href="install/index.html">طريقة التثبيت</a></span></div></footer>
 
 <script>
-// Version, date and signing fingerprint from version.json (same file the app checks for updates).
+// Version, date and signing fingerprint from version.json (same file the app checks for updates). The button, size and safe download: ../assets/downloader.js.
 fetch('version.json', {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(v => {
   if (!v) return;
   document.getElementById('ver').textContent =
     'النسخة ' + v.version + ' · ' + v.date + ' · تجربة مجانية 3 أيام · أندرويد 6 وأحدث';
-  if (v.apk) document.getElementById('dl').href = v.apk;
-  if (v.size > 0) document.getElementById('dlsize').textContent = (v.size / 1e6).toFixed(1) + ' MB';
   if (v.sha256) { const fp = document.getElementById('fp'); fp.hidden = false; fp.textContent = 'بصمة التوقيع SHA-256: ' + v.sha256; }
 }).catch(() => {});
 </script>
