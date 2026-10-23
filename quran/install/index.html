@@ -23,9 +23,18 @@
 <section><div class="wrap" style="max-width:780px">
   <h1 class="section-title">طريقة تثبيت قارئ القرآن</h1>
   <p class="section-sub">التطبيق بينزل كملف APK من موقعنا، مو من متجر Play. التثبيت بياخد دقيقة، ومنعمله مرة وحدة بس.</p>
+  <div class="dl-light">
+    <a class="btn btn-gold" id="dl" data-version="../version.json" data-file="قارئ-القرآن-" href="https://yasserninal120.github.io/quran/download/Qari-Al-Quran-2.2.2.apk" download="قارئ-القرآن-2.2.2.apk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+      تنزيل التطبيق
+    </a>
+    <p class="dl-note">التنزيل بيكمّل لحاله، فيك تسكّر الصفحة. بتلاقي الملف بالإشعارات أو بمجلد التنزيلات. الحجم: <span id="dlmb">46.6</span> م.ب</p>
+    <a class="dl-safe" id="dlsafe" href="#problems">طلعتلك رسالة "الحزمة غير صالحة"؟ نزّل بالطريقة الآمنة</a>
+    <div class="dl-box" id="dlbox" hidden aria-live="polite"></div>
+  </div>
 
   <div class="steps">
-    <div class="step"><div><h3>نزّل الملف</h3><p>من صفحة <a href="../index.html" style="color:var(--primary)">قارئ القرآن</a> اضغط "تحميل للأندرويد" واستنى الشريط يكمّل: الصفحة بتنزّل الملف وبتتأكد إنه سليم قبل ما تحفظه. الملف اسمه <span class="mono" id="fname">قارئ-القرآن-2.2.2.apk</span> (الرقم هو رقم النسخة). افتحه من الإشعار أو من مجلد التنزيلات.</p></div></div>
+    <div class="step"><div><h3>نزّل الملف</h3><p>اضغط <b>«تنزيل التطبيق»</b> هون فوق أو بصفحة <a href="../index.html" style="color:var(--primary)">قارئ القرآن</a>. المتصفح بينزّله بمدير التنزيلات تبعه، والتنزيل بيكمّل لحاله حتى لو سكّرت الصفحة. الملف اسمه <span class="mono" id="fname">قارئ-القرآن-2.2.2.apk</span> (الرقم هو رقم النسخة). لما يخلص، افتحه من الإشعار أو من مجلد التنزيلات.</p></div></div>
     <div class="step"><div><h3>اسمح بالتثبيت من هالمصدر</h3><p>أول مرة، أندرويد بيقلّك إنه ما بيسمح بتثبيت تطبيقات من هالمصدر. اضغط <b>الإعدادات</b>، وفعّل <b>السماح من هذا المصدر</b> (Allow from this source)، وارجع.</p></div></div>
     <div class="step"><div><h3>ثبّت</h3><p>اضغط <b>تثبيت</b>. إذا طلعلك تحذير من Play Protect إنه التطبيق مو معروف، اضغط <b>مزيد من التفاصيل</b> وبعدين <b>التثبيت على أي حال</b>. هاد بيطلع لأي تطبيق من برّا المتجر.</p></div></div>
     <div class="step"><div><h3>افتح واقرأ</h3><p>التطبيق بيطلع على الشاشة باسم <b>«قارئ القرآن»</b> بأيقونة «اقرأ». أول مرة بيطلب إذن الإشعارات لتذكير الأذكار، وفيك ترفضه وتكمّل عادي.</p></div></div>
@@ -40,16 +49,28 @@
   <p class="section-sub">نزّل التطبيق من هالموقع بس. وإذا بدك تتأكد تقنياً، بصمة التوقيع لازم تكون نفسها:</p>
   <span class="mono fp" id="fp">SHA-256: 08:A3:86:B9:B2:5F:98:17:E7:CC:D7:24:BD:E2:68:26:BC:E9:3A:21:BC:6F:71:22:10:83:5E:7B:ED:90:A2:06</span>
 
+  <h2 class="section-title" id="problems" style="font-size:22px;margin-top:40px">مشاكل التنزيل</h2>
+  <div class="card">
+    <h3 style="margin-top:0">طلعتلك «الحزمة غير صالحة» أو «حدث خطأ أثناء تحليل الحزمة»؟</h3>
+    <p>يعني الملف ما نزل سليم (بيصير أحياناً مع النت الضعيف). الحل:</p>
+    <ol style="margin:0 0 12px;padding-inline-start:22px;color:var(--muted)">
+      <li>احذف الملف اللي نزل من مجلد التنزيلات.</li>
+      <li>نزّل <a href="#dl" data-safe style="color:var(--primary);font-weight:600">بالطريقة الآمنة</a>: هي بتتأكد إنه الملف سليم قبل ما تحفظه، بس لازم تضل الصفحة مفتوحة لحتى يخلص.</li>
+      <li>افتح الملف الجديد وثبّته.</li>
+    </ol>
+    <p style="margin:0">(Package appears to be invalid / There was a problem parsing the package)</p>
+  </div>
+
   <h2 class="section-title" style="font-size:22px;margin-top:40px">مشاكل شائعة</h2>
   <div class="grid">
     <div class="card"><h3 style="margin-top:0">ما لقيت خيار "السماح من هذا المصدر"</h3><p>بعض الموبايلات بتسميه "تثبيت تطبيقات غير معروفة" بالإعدادات ← التطبيقات ← المتصفح (أو مدير الملفات).</p></div>
-    <div class="card"><h3 style="margin-top:0">«الحزمة غير صالحة / package appears to be invalid»</h3><p>الملف ما نزل كامل. احذفه ونزّل من جديد من الصفحة.</p></div>
-    <div class="card"><h3 style="margin-top:0">وقف التحميل بالنص؟</h3><p>ارجع لصفحة التطبيق واضغط "تحميل للأندرويد" مرة تانية، أو افتح التنزيلات واضغط استئناف.</p></div>
+    <div class="card"><h3 style="margin-top:0">وقف التحميل بالنص؟</h3><p>افتح التنزيلات بالمتصفح واضغط استئناف، بيكمّل من وين وقف. أو اضغط «تنزيل التطبيق» من جديد.</p></div>
     <div class="card"><h3 style="margin-top:0">لسا في مشكلة؟</h3><p>ابعتلنا صورة على <a href="https://wa.me/963956030136" target="_blank" rel="noopener" style="color:var(--primary)">واتساب</a> ومنحلها مع بعض.</p></div>
   </div>
 </div></section>
 
 <footer><div class="wrap"><span>© 2026 نينال سوفت · Ninal Soft</span><span><a href="../privacy/index.html">سياسة الخصوصية</a></span></div></footer>
+<script src="../../assets/downloader.js"></script>
 <script>
 fetch('../version.json', {cache: 'no-store'}).then(r => r.ok ? r.json() : null).then(v => {
   if (v && v.sha256) document.getElementById('fp').textContent = 'SHA-256: ' + v.sha256;
