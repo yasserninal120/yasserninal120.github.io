@@ -21,7 +21,7 @@
 <section><div class="wrap prose">
 <div class="ar">
   <h1 class="section-title">سياسة الخصوصية: قارئ القرآن</h1>
-  <p>تاريخ السريان: 19 تشرين الأول 2026</p>
+  <p>تاريخ السريان: 28 تشرين الأول 2026</p>
   <h2>مقدمة</h2>
   <p>تطبيق "قارئ القرآن" من نينال سوفت (م. ياسر وليد نينال). هالسياسة بتشرح شو بيحفظ التطبيق، وشو بيستعمل من النت وليش.</p>
   <h2>شو بيخزّن، وكلّه على الجهاز بس</h2>
@@ -49,7 +49,7 @@
     <li><b>الإشعارات</b> (POST_NOTIFICATIONS): تذكير الأذكار، وإشعار خدمة التذكير. فيك ترفضه والتطبيق بيشتغل عادي.</li>
     <li><b>المنبّهات الدقيقة</b> (SCHEDULE_EXACT_ALARM، USE_EXACT_ALARM): لتوصل تذكيرات الأذكار بوقتها.</li>
     <li><b>بعد إعادة التشغيل</b> (RECEIVE_BOOT_COMPLETED): لترجع التذكيرات بعد ما تطفي الموبايل وتشغّله.</li>
-    <li><b>خدمة المقدّمة</b> (FOREGROUND_SERVICE، FOREGROUND_SERVICE_DATA_SYNC): لتضل تذكيرات الأذكار شغّالة بالخلفية، بإشعار ثابت هادي. فيك تطفيها من الإعدادات.</li>
+    <li><b>خدمة المقدّمة</b> (FOREGROUND_SERVICE، FOREGROUND_SERVICE_SPECIAL_USE): لتضل تذكيرات الأذكار شغّالة بالخلفية، بإشعار ثابت هادي. فيك تطفيها من الإعدادات.</li>
     <li><b>إبقاء الجهاز صاحي</b> (WAKE_LOCK): لخدمة التذكير بالخلفية.</li>
     <li><b>استثناء من توفير البطارية</b> (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): بيطلبه أول مرة لحتى ما يوقّف النظام التذكيرات.</li>
     <li><b>تثبيت التحديثات</b> (REQUEST_INSTALL_PACKAGES): لفتح المثبّت للتحديث يلي نزل من جوّا التطبيق وتأكّد إنه سليم.</li>
@@ -57,6 +57,23 @@
     <li><b>الاهتزاز</b> (VIBRATE): بتطلبه مكتبة الإشعارات، وتذكيرات التطبيق صامتة وبلا اهتزاز.</li>
   </ul>
   <p>إبقاء الشاشة مضيئة وقت القراية والاستماع ما بيحتاج إذن.</p>
+  <h2>نسخة Google Play</h2>
+  <p>كل شي فوق بينطبق على النسخة يلي بتنزل من هالموقع. نسخة Google Play هي نفس التطبيق، بس فيها هالفروقات:</p>
+  <ul>
+    <li>ما بتفحص التحديثات من هالموقع ولا بتنزّلها، لأنها بتتحدّث من Google Play. فما بتتصل بـ <span class="mono">yasserninal120.github.io</span>.</li>
+    <li>ما فيها خدمة تذكير بالخلفية ولا إشعار ثابت، وما بتطلب استثناء من توفير البطارية. بدالها في زر بالإعدادات بيفتح صفحة البطارية بالموبايل، إذا حبّيت تلغي القيود بإيدك.</li>
+  </ul>
+  <p>الأذونات بنسخة Google Play، وليش كل وحدة:</p>
+  <ul>
+    <li><b>الإنترنت</b> (INTERNET): التلاوة والتفسير ومعاني الكلمات.</li>
+    <li><b>الإشعارات</b> (POST_NOTIFICATIONS): تذكير الأذكار. فيك ترفضه والتطبيق بيشتغل عادي.</li>
+    <li><b>المنبّهات الدقيقة</b> (SCHEDULE_EXACT_ALARM): لتوصل التذكيرات بوقتها إذا الموبايل سمح. وإذا ما سمح، بتوصل بوقت تقريبي.</li>
+    <li><b>بعد إعادة التشغيل</b> (RECEIVE_BOOT_COMPLETED): لترجع التذكيرات بعد ما تطفي الموبايل وتشغّله.</li>
+    <li><b>إبقاء الجهاز صاحي</b> (WAKE_LOCK): مصرّح فيه بإعدادات التطبيق ومكتبة خدمة التذكير. ونسخة Google Play ما فيها هالخدمة، فما بتستعمله.</li>
+    <li><b>حالة الشبكة</b> (ACCESS_NETWORK_STATE): بتستعمله مكتبة تشغيل التلاوة لتعرف نوع الاتصال وقت التشغيل.</li>
+    <li><b>الاهتزاز</b> (VIBRATE): بتطلبه مكتبة الإشعارات، وتذكيرات التطبيق صامتة وبلا اهتزاز.</li>
+    <li><b>إذن داخلي</b> (com.ninalsoft.quran.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION): بتضيفه مكتبة أندرويد (AndroidX) لحتى ما يقدر أي تطبيق تاني يبعت رسائل لأجزاء التطبيق الداخلية. ما إله علاقة بأي بيانات.</li>
+  </ul>
   <h2>إعلانات وتتبّع</h2>
   <p>ما في إعلانات، ولا تتبّع، ولا إحصائيات.</p>
   <h2>حقوقك</h2>
@@ -69,7 +86,7 @@
 
 <div class="en" dir="ltr" style="text-align:left">
   <h1 class="section-title">Privacy Policy: Qari Al-Quran</h1>
-  <p>Effective date: October 19, 2026</p>
+  <p>Effective date: October 28, 2026</p>
   <h2>Introduction</h2>
   <p>"Qari Al-Quran" (قارئ القرآن) is made by Ninal Soft (Eng. Yasser Waleed Ninal). This policy explains what the app stores, and what it uses the internet for and why.</p>
   <h2>What it stores, all on the device only</h2>
@@ -97,7 +114,7 @@
     <li><b>Notifications</b> (POST_NOTIFICATIONS): adhkar reminders and the reminder service notification. You can decline it; the app keeps working.</li>
     <li><b>Exact alarms</b> (SCHEDULE_EXACT_ALARM, USE_EXACT_ALARM): so adhkar reminders arrive on time.</li>
     <li><b>After restart</b> (RECEIVE_BOOT_COMPLETED): to restore the reminders after the phone restarts.</li>
-    <li><b>Foreground service</b> (FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC): keeps adhkar reminders running in the background, with a quiet persistent notification. You can turn it off in Settings.</li>
+    <li><b>Foreground service</b> (FOREGROUND_SERVICE, FOREGROUND_SERVICE_SPECIAL_USE): keeps adhkar reminders running in the background, with a quiet persistent notification. You can turn it off in Settings.</li>
     <li><b>Keep the device awake</b> (WAKE_LOCK): for the background reminder service.</li>
     <li><b>Battery optimisation exemption</b> (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): asked once so the system does not stop the reminders.</li>
     <li><b>Install updates</b> (REQUEST_INSTALL_PACKAGES): to open the installer for an update downloaded and verified inside the app.</li>
@@ -105,6 +122,23 @@
     <li><b>Vibration</b> (VIBRATE): requested by the notifications library; the app's reminders are silent, with no vibration.</li>
   </ul>
   <p>Keeping the screen on while reading and listening needs no permission.</p>
+  <h2>Google Play edition</h2>
+  <p>Everything above applies to the copy downloaded from this site. The Google Play edition is the same app, with these differences:</p>
+  <ul>
+    <li>It does not check for or download updates from this site; it is updated by Google Play. It never contacts <span class="mono">yasserninal120.github.io</span>.</li>
+    <li>It has no background reminder service and no persistent notification, and it does not ask for a battery optimisation exemption. Instead, a button in Settings opens the phone's battery page if you want to lift the restrictions yourself.</li>
+  </ul>
+  <p>Permissions in the Google Play edition, and why each one:</p>
+  <ul>
+    <li>Internet (INTERNET): recitations, tafsir and word meanings.</li>
+    <li>Notifications (POST_NOTIFICATIONS): adhkar reminders. You can decline it; the app keeps working.</li>
+    <li>Exact alarms (SCHEDULE_EXACT_ALARM): so reminders arrive on time when the phone allows it; otherwise they arrive at an approximate time.</li>
+    <li>After restart (RECEIVE_BOOT_COMPLETED): to restore the reminders after the phone restarts.</li>
+    <li>Keep the device awake (WAKE_LOCK): declared by the app's settings and the reminder service library. The Google Play edition has no such service, so it does not use it.</li>
+    <li>Network state (ACCESS_NETWORK_STATE): used by the recitation player library to know the connection type during playback.</li>
+    <li>Vibration (VIBRATE): requested by the notifications library; the app's reminders are silent, with no vibration.</li>
+    <li>Internal permission (com.ninalsoft.quran.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION): added by the Android support library (AndroidX) so no other app can send messages to the app's internal components. It has nothing to do with any data.</li>
+  </ul>
   <h2>Ads and tracking</h2>
   <p>No ads, no tracking, no analytics.</p>
   <h2>Your rights</h2>
