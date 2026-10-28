@@ -1,17 +1,14 @@
 {
   "app": "quran",
-  "version": "2.3.0",
-  "build": 24,
-  "date": "2026-10-23",
+  "version": "2.3.1",
+  "build": 25,
+  "date": "2026-10-28",
   "min_android": "7.0",
-  "apk": "https://yasserninal120.github.io/quran/download/Qari-Al-Quran-2.3.0.apk",
+  "apk": "https://yasserninal120.github.io/quran/download/Qari-Al-Quran-2.3.1.apk",
   "sha256": "08:A3:86:B9:B2:5F:98:17:E7:CC:D7:24:BD:E2:68:26:BC:E9:3A:21:BC:6F:71:22:10:83:5E:7B:ED:90:A2:06",
   "notes": [
-    "بنك أسئلة التجويد اتصحّح بالكامل",
-    "أشكال أسئلة جديدة ومستويات من مبتدئ لتحدّي",
-    "الأسئلة ما بتتكرر لحتى تخلص كلها",
-    "زر للتبليغ عن خطأ بأي سؤال"
+    "تحسين ثبات تذكيرات الأذكار على أندرويد 15 وما بعده، واسم الإشعار صار قارئ القرآن."
   ],
-  "file_sha256": "8e1524ecfa88b4d02646418cdafd14601856baab0e88d8b885fabeaf669b3c98",
-  "size": 42882756
+  "file_sha256": "72a91b601da51335e0c545f6dd1f0fe6e8de99b449480ee2ab9bb907adf363df",
+  "size": 42899236
 }
